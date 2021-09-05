@@ -10,7 +10,12 @@ export const theme = {
     white: "#ffffff",
     black: "#111111",
     red: "#C10C30",
-    blue: "#009ED3",
+    blue: "#12296d",
     yellow: "#f7cd5f",
+    pink: "#ba68c8",
+    purple: "#691b9a",
+    buttonGray: "#cee5ec",
+    navy: "#459db8",
+    borderGray: "#ebebeb",
   },
 };
