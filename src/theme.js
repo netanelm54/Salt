@@ -17,5 +17,6 @@ export const theme = {
     buttonGray: "#cee5ec",
     navy: "#459db8",
     borderGray: "#ebebeb",
+    background: "#f0f0f0",
   },
 };

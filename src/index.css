@@ -43,3 +43,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* global */
+.MuiTabs-root {
+  min-height: 32px !important;
+  max-height: 32px !important;
+}
+.MuiTabs-scroller {
+  min-height: 32px !important;
+  max-height: 32px !important;
+}
+.MuiTab-root {
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  min-width: 90px !important;
+  max-width: 90px !important;
+}
+.Mui-selected {
+  color: #691b9a !important;
+}
+.MuiTab-wrapper {
+  font-size: 12px;
+  font-weight: bold;
+}
+.MuiTabs-indicator {
+  background-color: #691b9a !important;
+}
