@@ -9,6 +9,7 @@ export const theme = {
   colors: {
     white: "#ffffff",
     black: "#111111",
+    gray: "#646464",
     red: "#C10C30",
     blue: "#12296d",
     yellow: "#f7cd5f",
@@ -18,5 +19,6 @@ export const theme = {
     navy: "#459db8",
     borderGray: "#ebebeb",
     background: "#f0f0f0",
+    shadowGray: "#aaaaaa",
   },
 };

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Header from "./header";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { fetchData } from "../../actions";
+import SectionsTable from "../common/sections-table";
+import SearchTab from "./search-tab";
 
 const Container = styled.div`
   height: 100vh;
@@ -16,10 +16,11 @@ const TabsContainer = styled.div`
   padding: 0 24px;
 `;
 const Body = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 164px);
+  width: calc(100% - 48px);
+  min-height: calc(100vh - 244px);
   background: ${(props) => props.theme.colors.background};
   box-shadow: inset 0px 2px 3px -3px ${(props) => props.theme.colors.black};
+  padding: 40px 24px;
 `;
 
 const DashboardManager = () => {
@@ -52,12 +53,13 @@ const DashboardManager = () => {
             <Tab label="Response" />
           </Tabs>
         </TabsContainer>
-        <Body>{tabIndex}</Body>
+        <Body>
+          <SearchTab />
+          <SectionsTable data={tabIndex === 0 ? data.request : data.response} />
+        </Body>
       </Container>
     )
   );
 };
-
-DashboardManager.propTypes = {};
 
 export default DashboardManager;
