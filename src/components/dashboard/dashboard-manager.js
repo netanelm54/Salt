@@ -38,10 +38,26 @@ const DashboardManager = () => {
     setTabIndex(newValue);
   };
 
+  const filteredData = data && {
+    ...data,
+    request: {
+      ...data.request,
+      urlParams: data.request.urlParams.filter((r) => !piiOnly || r.pii),
+      queryParams: data.request.queryParams.filter((r) => !piiOnly || r.pii),
+      headers: data.request.headers.filter((r) => !piiOnly || r.pii),
+      body: data.request.body.filter((r) => !piiOnly || r.pii),
+    },
+    response: {
+      ...data.response,
+      headers: data.response.headers.filter((r) => !piiOnly || r.pii),
+      body: data.response.body.filter((r) => !piiOnly || r.pii),
+    },
+  };
+
   return (
-    data && (
+    filteredData && (
       <Container>
-        <Header data={data} />
+        <Header data={filteredData} />
         <TabsContainer>
           <Tabs
             value={tabIndex}
@@ -62,11 +78,11 @@ const DashboardManager = () => {
               {
                 name: "pii",
                 label: "PII",
-                size: piiOnly ? 65 : 10,
+                size: 10,
                 type: "bool",
                 color: "blue",
               },
-              !piiOnly && {
+              {
                 name: "masked",
                 label: "Masking",
                 size: 55,
@@ -74,8 +90,8 @@ const DashboardManager = () => {
                 color: "purple",
               },
               { name: "type", label: "Type", size: 10, type: "badge" },
-            ].filter(Boolean)}
-            data={tabIndex === 0 ? data.request : data.response}
+            ]}
+            data={tabIndex === 0 ? filteredData.request : filteredData.response}
           />
         </Body>
       </Container>
