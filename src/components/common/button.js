@@ -13,6 +13,7 @@ const Container = styled.div`
     props.purple &&
     css`
       border: 1px solid ${(props) => props.theme.colors.purple};
+      color: ${(props) => props.theme.colors.purple};
     `}
   ${(props) =>
     props.purple &&
@@ -25,6 +26,7 @@ const Container = styled.div`
     props.blue &&
     css`
       border: 1px solid ${(props) => props.theme.colors.blue};
+      color: ${(props) => props.theme.colors.blue};
     `}
   ${(props) =>
     props.blue &&

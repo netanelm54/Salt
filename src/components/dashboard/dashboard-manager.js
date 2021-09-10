@@ -5,7 +5,7 @@ import Header from "./header";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { fetchData } from "../../actions";
-import SectionsTable from "../common/sections-table";
+import SectionsTable from "../common/sections-table/sections-table";
 import SearchTab from "./search-tab";
 
 const Container = styled.div`
@@ -28,6 +28,7 @@ const DashboardManager = () => {
   const data = useSelector((state) => state.data);
 
   const [tabIndex, setTabIndex] = useState(0);
+  const [piiOnly, setPiiOnly] = useState(false);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -54,8 +55,28 @@ const DashboardManager = () => {
           </Tabs>
         </TabsContainer>
         <Body>
-          <SearchTab />
-          <SectionsTable data={tabIndex === 0 ? data.request : data.response} />
+          <SearchTab piiOnly={piiOnly} setPiiOnly={setPiiOnly} />
+          <SectionsTable
+            columns={[
+              { name: "name", label: "Name", size: 25 },
+              {
+                name: "pii",
+                label: "PII",
+                size: piiOnly ? 65 : 10,
+                type: "bool",
+                color: "blue",
+              },
+              !piiOnly && {
+                name: "masked",
+                label: "Masking",
+                size: 55,
+                type: "bool",
+                color: "purple",
+              },
+              { name: "type", label: "Type", size: 10, type: "badge" },
+            ].filter(Boolean)}
+            data={tabIndex === 0 ? data.request : data.response}
+          />
         </Body>
       </Container>
     )

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -54,27 +55,34 @@ const ResetButton = styled(Button)`
   font-weight: normal;
 `;
 
-const SearchTab = ({ data }) => {
-  return (
-    <Container>
-      <Content>
-        <Row>
-          <Icon icon={faSearch} />
-          <SearchInput type="text" name="search" placeholder="Search" />
-        </Row>
-
-        <Row>
-          <Seperator />
-          <input type="checkbox" name="piiCheck" id="piiCheck" />
-          <Label for="piiCheck">Show PII only</Label>
-          <ApplyButton purple fill>
-            Apply
-          </ApplyButton>
-        </Row>
-      </Content>
-      <ResetButton>Reset Filter</ResetButton>
-    </Container>
-  );
+const SearchTab = ({ piiOnly, setPiiOnly }) => (
+  <Container>
+    <Content>
+      <Row>
+        <Icon icon={faSearch} />
+        <SearchInput type="text" name="search" placeholder="Search" />
+      </Row>
+      <Row>
+        <Seperator />
+        <input
+          onChange={() => setPiiOnly(!piiOnly)}
+          value={piiOnly}
+          type="checkbox"
+          name="piiCheck"
+          id="piiCheck"
+        />
+        <Label for="piiCheck">Show PII only</Label>
+        <ApplyButton purple fill>
+          Apply
+        </ApplyButton>
+      </Row>
+    </Content>
+    <ResetButton>Reset Filter</ResetButton>
+  </Container>
+);
+SearchTab.propTypes = {
+  piiOnly: PropTypes.bool,
+  setPiiOnly: PropTypes.func,
 };
 
 export default SearchTab;
